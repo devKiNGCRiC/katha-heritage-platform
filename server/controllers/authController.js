@@ -43,4 +43,23 @@ export async function register(req, res, next) {
   }
 }
 
+export async function login(req, res, next) {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email }).select('+password');
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(401).json({
+        error: 'Invalid email or password',
+        code: 'INVALID_CREDENTIALS'
+      });
+    }
+
+    const token = signToken(user);
+    return res.status(200).json({ user: toSafeUser(user), token });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export { signToken, toSafeUser };

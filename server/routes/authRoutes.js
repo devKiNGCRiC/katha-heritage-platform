@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { validate } from '../middleware/validate.js';
-import { register } from '../controllers/authController.js';
+import { register, login } from '../controllers/authController.js';
 
 const router = Router();
 
@@ -14,6 +14,16 @@ router.post(
   ],
   validate,
   register
+);
+
+router.post(
+  '/login',
+  [
+    body('email').isEmail().withMessage('A valid email is required').normalizeEmail(),
+    body('password').notEmpty().withMessage('Password is required')
+  ],
+  validate,
+  login
 );
 
 export default router;

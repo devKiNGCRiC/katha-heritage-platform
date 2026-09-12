@@ -55,3 +55,37 @@ describe('POST /api/auth/register', () => {
     expect(res.body.code).toBe('VALIDATION_ERROR');
   });
 });
+
+describe('POST /api/auth/login', () => {
+  beforeEach(async () => {
+    await User.create({ name: 'Raj Roy', email: 'raj@example.com', password: 'password123' });
+  });
+
+  test('logs in with correct credentials', async () => {
+    const res = await request(app).post('/api/auth/login').send({
+      email: 'raj@example.com',
+      password: 'password123'
+    });
+
+    expect(res.status).toBe(200);
+    expect(res.body.token).toBeDefined();
+    expect(res.body.user.email).toBe('raj@example.com');
+  });
+
+  test('rejects an incorrect password', async () => {
+    const res = await request(app).post('/api/auth/login').send({
+      email: 'raj@example.com',
+      password: 'wrong-password'
+    });
+
+    expect(res.status).toBe(401);
+    expect(res.body.code).toBe('INVALID_CREDENTIALS');
+  });
+
+  test('rejects a login with missing fields', async () => {
+    const res = await request(app).post('/api/auth/login').send({ email: 'raj@example.com' });
+
+    expect(res.status).toBe(400);
+    expect(res.body.code).toBe('VALIDATION_ERROR');
+  });
+});
