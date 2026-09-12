@@ -21,7 +21,7 @@
     "mern-stack",
     "react-native"
   ],
-  "author": "RKC_BHARAT Initiative",
+  "author": "Raj Roy (KiNG) <kingraj28roy@gmail.com> (https://github.com/devKiNGCRiC)",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2",
@@ -33,6 +33,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/[your-username]/katha-heritage-platform"
+    "url": "https://github.com/devKiNGCRiC/katha-heritage-platform"
   }
 }
