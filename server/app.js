@@ -9,6 +9,7 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
 import dbManager from './utils/database.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -90,8 +91,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 📝 API Routes (auth routes are added here in Task 5)
-// app.use('/api/auth', authRoutes);
+// 📝 API Routes
+app.use('/api/auth', authRoutes);
 
 // 🚨 Error Handling Middleware
 app.use((err, req, res, next) => {
