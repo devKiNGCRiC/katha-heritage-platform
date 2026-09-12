@@ -88,14 +88,15 @@ Empowering the next generation with deep knowledge of Indian culture, history, a
 
 ## 👥 Team
 
-- **Founder & Full-Stack Developer**: [Your Name]
+- **Founder & Full-Stack Developer**: Raj Roy (KiNG)
 - **Organization**: RKC_BHARAT Initiative
 
 ## 📞 Contact & Social
 
-- **GitHub**: [Your GitHub Profile]
-- **LinkedIn**: [Your LinkedIn]
-- **Email**: [Your Email]
+- **GitHub**: [devKiNGCRiC](https://github.com/devKiNGCRiC)
+- **LinkedIn**: [rajroy28](https://www.linkedin.com/in/rajroy28/)
+- **Instagram**: [@devkingcric](https://www.instagram.com/devkingcric)
+- **Email**: kingraj28roy@gmail.com
 
 ---
 
