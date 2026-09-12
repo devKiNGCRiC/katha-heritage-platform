@@ -62,4 +62,20 @@ export async function login(req, res, next) {
   }
 }
 
+export async function getMe(req, res, next) {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(401).json({
+        error: 'User no longer exists',
+        code: 'UNAUTHORIZED'
+      });
+    }
+
+    return res.status(200).json({ user: toSafeUser(user) });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export { signToken, toSafeUser };
