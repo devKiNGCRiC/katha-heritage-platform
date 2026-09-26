@@ -38,7 +38,7 @@ const CATEGORIES = [
 function SectionHeading({ eyebrow, title, intro }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-saffron-deep">{eyebrow}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-800">{eyebrow}</p>
       <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">{title}</h2>
       {intro && <p className="mt-4 text-lg text-charcoal-soft">{intro}</p>}
     </div>
@@ -193,6 +193,7 @@ export default function Home() {
 
   return (
     <>
+      <title>KATHA — Indian Heritage Platform</title>
       <Hero user={user} />
       <Features />
       <Categories />

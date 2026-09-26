@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -12,7 +12,8 @@ function readHashTarget(hash) {
 }
 
 export default function Layout() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
+  const navigationType = useNavigationType();
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -25,8 +26,10 @@ export default function Layout() {
         return;
       }
     }
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }, [pathname, hash]);
+    // Back/Forward: let the browser restore the previous scroll position.
+    if (navigationType === 'POP') return;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname, hash, key, navigationType]);
 
   return (
     <div className="flex min-h-dvh flex-col">

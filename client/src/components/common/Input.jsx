@@ -5,7 +5,7 @@ const Input = forwardRef(function Input({ label, error, hint, id, className = ''
   const inputId = id || autoId;
   const errorId = `${inputId}-error`;
   const hintId = `${inputId}-hint`;
-  const describedBy = [error ? errorId : null, hint ? hintId : null].filter(Boolean).join(' ') || undefined;
+  const describedBy = error ? errorId : hint ? hintId : undefined;
 
   return (
     <div className={className}>

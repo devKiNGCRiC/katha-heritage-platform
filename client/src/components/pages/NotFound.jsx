@@ -3,7 +3,9 @@ import Button from '../common/Button';
 
 export default function NotFound() {
   return (
-    <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:py-32">
+    <>
+      <title>Page not found · KATHA</title>
+      <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:py-32">
       <p className="font-display text-8xl font-bold text-saffron-deep/90 sm:text-9xl" aria-hidden="true">
         404
       </p>
@@ -14,6 +16,7 @@ export default function NotFound() {
       <Button as={Link} to="/" size="large" className="mt-8">
         Back to home
       </Button>
-    </section>
+      </section>
+    </>
   );
 }

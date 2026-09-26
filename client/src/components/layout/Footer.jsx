@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '../common/Icons';
 import Logo from '../common/Logo';
@@ -13,6 +14,8 @@ const SOCIALS = [
 const LINK = 'underline-offset-4 transition-colors hover:text-gold hover:underline';
 
 export default function Footer() {
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <footer className="bg-navy-deep text-cream/85">
       <div className="h-1 bg-linear-to-r from-saffron via-gold to-leaf" aria-hidden="true" />
@@ -27,7 +30,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav aria-label="Footer explore">
+        <nav aria-label="Footer">
           <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Explore</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
@@ -40,16 +43,20 @@ export default function Footer() {
                 Themes
               </Link>
             </li>
-            <li>
-              <Link to="/login" className={LINK}>
-                Sign in
-              </Link>
-            </li>
-            <li>
-              <Link to="/register" className={LINK}>
-                Join KATHA
-              </Link>
-            </li>
+            {!user && (
+              <>
+                <li>
+                  <Link to="/login" className={LINK}>
+                    Sign in
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/register" className={LINK}>
+                    Join KATHA
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
 

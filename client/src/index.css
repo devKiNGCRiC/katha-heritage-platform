@@ -70,6 +70,10 @@
     outline-offset: 2px;
   }
 
+  :is(.bg-navy, .bg-navy-deep) :focus-visible {
+    outline-color: var(--color-gold);
+  }
+
   ::selection {
     background: rgb(255 215 0 / 0.5);
   }

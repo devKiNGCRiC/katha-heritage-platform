@@ -22,6 +22,9 @@ export default function Login() {
 
   useEffect(() => {
     dispatch(clearError());
+    return () => {
+      dispatch(clearError());
+    };
   }, [dispatch]);
 
   if (user) return <Navigate to="/" replace />;
@@ -29,43 +32,46 @@ export default function Login() {
   const onSubmit = (values) => dispatch(loginUser({ email: values.email, password: values.password }));
 
   return (
-    <AuthPanel
-      title="Welcome back"
-      subtitle="Sign in to continue your journey through India's stories."
-      footer={
-        <>
-          New to KATHA?{' '}
-          <Link to="/register" className={LINK}>
-            Create an account
-          </Link>
-        </>
-      }
-    >
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
-        <FormError message={error} />
-        <Input
-          label="Email"
-          type="email"
-          autoComplete="email"
-          inputMode="email"
-          error={errors.email?.message}
-          {...register('email', {
-            setValueAs: (value) => value.trim(),
-            required: 'Enter your email address',
-            pattern: { value: EMAIL_PATTERN, message: 'Enter a valid email address' },
-          })}
-        />
-        <Input
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          error={errors.password?.message}
-          {...register('password', { required: 'Enter your password' })}
-        />
-        <Button type="submit" size="large" loading={status === 'loading'} className="w-full">
-          Sign in
-        </Button>
-      </form>
-    </AuthPanel>
+    <>
+      <title>Sign in · KATHA</title>
+      <AuthPanel
+        title="Welcome back"
+        subtitle="Sign in to continue your journey through India's stories."
+        footer={
+          <>
+            New to KATHA?{' '}
+            <Link to="/register" className={LINK}>
+              Create an account
+            </Link>
+          </>
+        }
+      >
+        <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
+          <FormError message={error} />
+          <Input
+            label="Email"
+            type="email"
+            autoComplete="email"
+            inputMode="email"
+            error={errors.email?.message}
+            {...register('email', {
+              setValueAs: (value) => value.trim(),
+              required: 'Enter your email address',
+              pattern: { value: EMAIL_PATTERN, message: 'Enter a valid email address' },
+            })}
+          />
+          <Input
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            error={errors.password?.message}
+            {...register('password', { required: 'Enter your password' })}
+          />
+          <Button type="submit" size="large" loading={status === 'loading'} className="w-full">
+            Sign in
+          </Button>
+        </form>
+      </AuthPanel>
+    </>
   );
 }
