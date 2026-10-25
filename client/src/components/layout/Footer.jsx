@@ -11,19 +11,18 @@ const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/devkingcric', Icon: InstagramIcon },
 ];
 
-const LINK = 'underline-offset-4 transition-colors hover:text-gold hover:underline';
+const LINK = 'underline-offset-4 transition-colors hover:text-gold-leaf hover:underline';
 
 export default function Footer() {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <footer className="bg-navy-deep text-cream/85">
-      <div className="h-1 bg-linear-to-r from-saffron via-gold to-leaf" aria-hidden="true" />
+    <footer className="bg-indigo-deep bg-ink-grain text-parchment-light/85">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
             <Logo className="size-10" />
-            <span className="font-display text-2xl font-bold tracking-wide text-cream">KATHA</span>
+            <span className="font-display text-2xl font-semibold tracking-wide text-parchment-light">KATHA</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed">
             Preserving the past, inspiring the future — one katha at a time.
@@ -31,7 +30,7 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Footer">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Explore</h2>
+          <h2 className="text-sm font-semibold text-gold-leaf">Explore</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
               <Link to={{ pathname: '/', hash: '#features' }} className={LINK}>
@@ -61,7 +60,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Connect</h2>
+          <h2 className="text-sm font-semibold text-gold-leaf">Connect</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {SOCIALS.map(({ label, href, Icon }) => (
               <li key={label}>
@@ -80,12 +79,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-cream/15">
+      <div className="border-t border-parchment-light/15">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>
-            &copy; {YEAR} KATHA. Built with care by Raj Roy (KiNG) &middot; RKC_BHARAT Initiative.
-          </p>
-          <p className="font-devanagari text-sm text-gold" lang="hi">
+          <p>&copy; {YEAR} KATHA, built by Raj Roy (KiNG) for the RKC_BHARAT Initiative.</p>
+          <p className="font-devanagari text-sm text-gold-leaf" lang="hi">
             जय हिन्द
           </p>
         </div>

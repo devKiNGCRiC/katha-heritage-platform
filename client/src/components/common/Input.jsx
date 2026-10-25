@@ -9,7 +9,7 @@ const Input = forwardRef(function Input({ label, error, hint, id, className = ''
 
   return (
     <div className={className}>
-      <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-navy">
+      <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-ink">
         {label}
       </label>
       <input
@@ -17,13 +17,13 @@ const Input = forwardRef(function Input({ label, error, hint, id, className = ''
         id={inputId}
         aria-invalid={error ? 'true' : undefined}
         aria-describedby={describedBy}
-        className={`block w-full rounded-lg border bg-white px-4 py-3 text-base text-charcoal shadow-sm transition placeholder:text-charcoal-soft/70 focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/30 ${
-          error ? 'border-red-600' : 'border-charcoal/25'
+        className={`block w-full rounded-md border bg-parchment-light px-4 py-3 text-base text-ink shadow-sm transition placeholder:text-ink-soft/70 focus:border-ink focus:outline-none focus:ring-2 focus:ring-vermillion/30 ${
+          error ? 'border-red-600' : 'border-ink/25'
         }`}
         {...props}
       />
       {hint && !error && (
-        <p id={hintId} className="mt-1.5 text-sm text-charcoal-soft">
+        <p id={hintId} className="mt-1.5 text-sm text-ink-soft">
           {hint}
         </p>
       )}

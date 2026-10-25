@@ -10,11 +10,11 @@ const SIZES = {
 };
 
 const VARIANTS = {
-  primary: 'bg-linear-to-r from-saffron to-gold text-ink shadow-glow hover:brightness-105',
-  secondary: 'bg-navy text-cream hover:bg-navy-dark',
-  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-cream',
-  ghost: 'text-navy hover:bg-navy/10',
-  light: 'border-2 border-cream/70 text-cream hover:bg-cream/10',
+  primary: 'bg-vermillion text-parchment-light shadow-sm hover:bg-vermillion-deep',
+  secondary: 'bg-indigo text-parchment-light hover:bg-indigo-deep',
+  outline: 'border-2 border-ink text-ink hover:bg-ink hover:text-parchment-light',
+  ghost: 'text-ink hover:bg-ink/10',
+  light: 'border-2 border-parchment-light/70 text-parchment-light hover:bg-parchment-light/10',
   danger: 'bg-red-700 text-white hover:bg-red-800',
 };
 

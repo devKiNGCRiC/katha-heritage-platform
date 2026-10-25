@@ -33,36 +33,6 @@ export const CloseIcon = (props) => (
   </Svg>
 );
 
-export const BookIcon = (props) => (
-  <Svg {...props}>
-    <path d="M12 7v14" />
-    <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
-  </Svg>
-);
-
-export const UsersIcon = (props) => (
-  <Svg {...props}>
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </Svg>
-);
-
-export const MapPinIcon = (props) => (
-  <Svg {...props}>
-    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-    <circle cx="12" cy="10" r="3" />
-  </Svg>
-);
-
-export const ArrowRightIcon = (props) => (
-  <Svg {...props}>
-    <path d="M5 12h14" />
-    <path d="m12 5 7 7-7 7" />
-  </Svg>
-);
-
 export const AlertIcon = (props) => (
   <Svg {...props}>
     <circle cx="12" cy="12" r="10" />
@@ -94,22 +64,39 @@ export const InstagramIcon = (props) => (
   </Svg>
 );
 
-const PETAL_ANGLES = Array.from({ length: 16 }, (_, index) => index * 22.5);
-
-export function Mandala({ className = '' }) {
+/**
+ * A stack of palm-leaf manuscript pages (tāḍpatra): two overlapping leaves,
+ * binding holes threaded with string, and rows of incised script. Grounded
+ * in how these texts were actually recorded before print, rather than a
+ * generic mandala or compass motif.
+ */
+export function Manuscript({ className = '' }) {
   return (
-    <svg viewBox="0 0 400 400" fill="none" className={className} aria-hidden="true" focusable="false">
-      <g stroke="currentColor" strokeWidth="1.2">
-        <circle cx="200" cy="200" r="190" opacity="0.35" />
-        <circle cx="200" cy="200" r="150" opacity="0.5" />
-        <circle cx="200" cy="200" r="60" opacity="0.6" />
-        {PETAL_ANGLES.map((angle) => (
-          <g key={angle} transform={`rotate(${angle} 200 200)`}>
-            <path d="M200 50C222 100 222 140 200 170C178 140 178 100 200 50Z" opacity="0.75" />
-            <path d="M200 20L208 44L200 38L192 44Z" opacity="0.55" />
-          </g>
-        ))}
+    <svg viewBox="0 0 280 360" fill="none" className={className} aria-hidden="true" focusable="false">
+      <g transform="rotate(-7 140 180)">
+        <rect x="40" y="40" width="200" height="280" rx="10" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
       </g>
+      <g transform="rotate(5 140 180)">
+        <rect x="40" y="40" width="200" height="280" rx="10" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="70" cy="66" r="3.5" fill="currentColor" />
+        <circle cx="210" cy="66" r="3.5" fill="currentColor" />
+        <circle cx="70" cy="294" r="3.5" fill="currentColor" />
+        <circle cx="210" cy="294" r="3.5" fill="currentColor" />
+        <g stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.75">
+          <path d="M62 100h120" />
+          <path d="M62 118h150" />
+          <path d="M62 136h90" />
+          <path d="M62 154h140" />
+          <path d="M62 172h110" />
+          <path d="M62 190h150" />
+          <path d="M62 208h100" />
+          <path d="M62 226h135" />
+          <path d="M62 244h95" />
+          <path d="M62 262h120" />
+        </g>
+      </g>
+      <path d="M70 66 Q140 38 210 66" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
+      <path d="M70 294 Q140 322 210 294" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
     </svg>
   );
 }

@@ -9,10 +9,10 @@ import Register from './components/pages/Register';
 
 function FullPageLoader() {
   return (
-    <div className="grid min-h-dvh place-items-center bg-cream" role="status" aria-live="polite">
+    <div className="grid min-h-dvh place-items-center bg-parchment" role="status" aria-live="polite">
       <div className="flex flex-col items-center gap-4">
         <Logo className="size-14 animate-pulse motion-reduce:animate-none" />
-        <p className="text-sm font-medium text-charcoal-soft">Loading KATHA&hellip;</p>
+        <p className="text-sm font-medium text-ink-soft">Loading KATHA&hellip;</p>
       </div>
     </div>
   );
