@@ -64,39 +64,45 @@ export const InstagramIcon = (props) => (
   </Svg>
 );
 
+const RAY_ANGLES = Array.from({ length: 16 }, (_, i) => i * 22.5);
+
 /**
- * A stack of palm-leaf manuscript pages (tāḍpatra): two overlapping leaves,
- * binding holes threaded with string, and rows of incised script. Grounded
- * in how these texts were actually recorded before print, rather than a
- * generic mandala or compass motif.
+ * A solid sunburst: rays radiating from a core disc, the way painted
+ * deities carry a halo of light. A comic-cover burst and a divine
+ * radiance motif at once — flat-filled, not line art.
  */
-export function Manuscript({ className = '' }) {
+export function Sunburst({ className = '' }) {
   return (
-    <svg viewBox="0 0 280 360" fill="none" className={className} aria-hidden="true" focusable="false">
-      <g transform="rotate(-7 140 180)">
-        <rect x="40" y="40" width="200" height="280" rx="10" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
+    <svg viewBox="0 0 400 400" fill="currentColor" className={className} aria-hidden="true" focusable="false">
+      {RAY_ANGLES.map((angle) => (
+        <polygon key={angle} points="191,130 209,130 200,16" transform={`rotate(${angle} 200 200)`} />
+      ))}
+      <circle cx="200" cy="200" r="92" />
+    </svg>
+  );
+}
+
+const SPOKE_ANGLES = Array.from({ length: 24 }, (_, i) => i * 15);
+
+/** The Ashoka Chakra: a 24-spoke dharma wheel, drawn in outline. */
+export function Chakra({ className = '' }) {
+  return (
+    <svg
+      viewBox="0 0 400 400"
+      fill="none"
+      stroke="currentColor"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <circle cx="200" cy="200" r="178" strokeWidth="7" />
+      <circle cx="200" cy="200" r="148" strokeWidth="2" opacity="0.6" />
+      <g strokeWidth="7" strokeLinecap="round">
+        {SPOKE_ANGLES.map((angle) => (
+          <line key={angle} x1="200" y1="200" x2="200" y2="44" transform={`rotate(${angle} 200 200)`} />
+        ))}
       </g>
-      <g transform="rotate(5 140 180)">
-        <rect x="40" y="40" width="200" height="280" rx="10" stroke="currentColor" strokeWidth="1.8" />
-        <circle cx="70" cy="66" r="3.5" fill="currentColor" />
-        <circle cx="210" cy="66" r="3.5" fill="currentColor" />
-        <circle cx="70" cy="294" r="3.5" fill="currentColor" />
-        <circle cx="210" cy="294" r="3.5" fill="currentColor" />
-        <g stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.75">
-          <path d="M62 100h120" />
-          <path d="M62 118h150" />
-          <path d="M62 136h90" />
-          <path d="M62 154h140" />
-          <path d="M62 172h110" />
-          <path d="M62 190h150" />
-          <path d="M62 208h100" />
-          <path d="M62 226h135" />
-          <path d="M62 244h95" />
-          <path d="M62 262h120" />
-        </g>
-      </g>
-      <path d="M70 66 Q140 38 210 66" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-      <path d="M70 294 Q140 322 210 294" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
+      <circle cx="200" cy="200" r="20" fill="currentColor" stroke="none" />
     </svg>
   );
 }

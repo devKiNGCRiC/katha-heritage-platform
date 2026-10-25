@@ -6,7 +6,7 @@ import Button from '../common/Button';
 import { CloseIcon, MenuIcon } from '../common/Icons';
 import Logo from '../common/Logo';
 
-const NAV_BASE = 'rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:text-vermillion-deep';
+const NAV_BASE = 'rounded-md px-3 py-2 text-sm font-bold transition-colors hover:text-crimson-deep';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function Header() {
         to="/"
         end
         onClick={closeMenu}
-        className={({ isActive }) => `${NAV_BASE} ${isActive ? 'text-vermillion-deep' : 'text-ink'}`}
+        className={({ isActive }) => `${NAV_BASE} ${isActive ? 'text-crimson-deep' : 'text-ink'}`}
       >
         Home
       </NavLink>
@@ -69,11 +69,11 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-parchment/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-paper/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" aria-label="KATHA home">
           <Logo className="size-9" />
-          <span className="font-display text-2xl font-semibold tracking-wide text-ink">KATHA</span>
+          <span className="font-display text-2xl font-bold tracking-wide text-ink">KATHA</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -95,11 +95,11 @@ export default function Header() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-ink/10 bg-parchment md:hidden">
+        <div id="mobile-menu" className="border-t-[3px] border-ink bg-paper md:hidden">
           <nav aria-label="Mobile" className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
             {links}
           </nav>
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 border-t border-ink/10 px-4 py-4 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 border-t border-ink/20 px-4 py-4 sm:px-6">
             {authActions}
           </div>
         </div>

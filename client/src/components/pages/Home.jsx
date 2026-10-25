@@ -1,25 +1,43 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
-import { Manuscript } from '../common/Icons';
+import { Sunburst } from '../common/Icons';
 
-const FEATURES = [
+const CHAPTERS = [
   {
     title: 'Stories',
     status: 'Coming first',
-    text: 'Read and share mythology, history and folk tales, organised by region, era and theme.',
+    bg: 'bg-saffron',
+    text: 'text-ink',
+    rotate: '-rotate-2',
+    body: 'Read and share mythology, history and folk tales, organised by region, era and theme.',
   },
   {
     title: 'Community',
     status: 'Planned',
-    text: 'Follow storytellers, join the conversation, ask experts and grow a circle of cultural ambassadors.',
+    bg: 'bg-crimson-deep',
+    text: 'text-paper',
+    rotate: 'rotate-2',
+    body: 'Follow storytellers, join the conversation, ask experts and grow a circle of cultural ambassadors.',
   },
   {
     title: 'Cultural Maps',
     status: 'Planned',
-    text: 'Travel India on an interactive map of temples, forts and heritage sites, each with its own stories.',
+    bg: 'bg-navy',
+    text: 'text-paper',
+    rotate: '-rotate-2',
+    body: 'Travel India on an interactive map of temples, forts and heritage sites, each with its own stories.',
   },
 ];
+
+const PANEL_STYLES = [
+  { bg: 'bg-saffron', text: 'text-ink', accent: 'text-navy' },
+  { bg: 'bg-navy', text: 'text-paper', accent: 'text-marigold' },
+  { bg: 'bg-crimson-deep', text: 'text-paper', accent: 'text-marigold' },
+  { bg: 'bg-marigold', text: 'text-ink', accent: 'text-crimson-deep' },
+];
+
+const ROTATIONS = ['-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
 
 const CATEGORIES = [
   { name: 'Mythology', native: 'पुराण', text: 'Epics, deities and the tales that shaped belief.' },
@@ -33,25 +51,31 @@ const CATEGORIES = [
 
 function Hero({ user }) {
   return (
-    <section className="relative overflow-hidden bg-indigo bg-ink-grain text-parchment-light">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
-        <div className="animate-rise">
-          <span lang="hi" className="font-devanagari text-lg text-gold-leaf">
+    <section className="relative overflow-hidden bg-navy bg-halftone-light text-paper">
+      <Sunburst className="pointer-events-none absolute -right-32 top-1/2 size-[46rem] -translate-y-1/2 animate-spin-slow text-saffron/25 motion-reduce:animate-none lg:-right-16" />
+
+      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
+        <div className="max-w-2xl animate-rise">
+          <p lang="hi" className="font-devanagari text-7xl font-bold leading-none text-marigold sm:text-8xl">
             कथा
-          </span>
-          <h1 className="mt-4 font-display text-5xl font-semibold leading-[1.08] text-parchment-light sm:text-6xl lg:text-[3.6rem]">
-            Before it was written, it was told.
+          </p>
+
+          <h1 className="mt-6 font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-6xl">
+            Gods. Kings. Legends.
+            <br />
+            Every tale India has ever told.
           </h1>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-parchment-light/80">
-            KATHA gathers India&rsquo;s myths, histories and folk tales &mdash; the ones once carried only by a
-            storyteller&rsquo;s voice &mdash; into a home readers can return to.
+
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/85">
+            KATHA gathers the myths, the empires and the folk legends whispered for centuries into one home for
+            every story India has ever told.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-5">
             {user ? (
               <>
-                <p className="text-parchment-light/90">
-                  Welcome back, <strong className="font-semibold text-gold-leaf">{user.name}</strong>.
+                <p className="text-paper/90">
+                  Welcome back, <strong className="font-bold text-marigold">{user.name}</strong>.
                 </p>
                 <Button as={Link} to={{ pathname: '/', hash: '#features' }} variant="light" size="large">
                   See what&rsquo;s coming
@@ -69,10 +93,6 @@ function Hero({ user }) {
             )}
           </div>
         </div>
-
-        <div className="hidden justify-center lg:flex animate-rise [animation-delay:150ms]">
-          <Manuscript className="h-auto w-72 text-gold-leaf/60" />
-        </div>
       </div>
     </section>
   );
@@ -80,53 +100,65 @@ function Hero({ user }) {
 
 function Chapters() {
   return (
-    <section id="features" className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28">
-      <h2 className="font-display text-3xl font-semibold sm:text-4xl">Three chapters, opening in order</h2>
-      <p className="mt-4 max-w-xl text-lg text-ink-soft">
-        KATHA is being written in the open. Each chapter opens once the one before it is ready.
+    <section id="features" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
+        The sagas begin
+      </h2>
+      <p className="mt-4 max-w-xl text-lg text-ink/70">
+        Every great epic unfolds one chapter at a time. Here is what is opening first.
       </p>
 
-      <ul className="mt-12 divide-y divide-ink/15 border-y border-ink/15">
-        {FEATURES.map(({ title, status, text }) => (
-          <li
+      <div className="mt-12 grid gap-8 sm:grid-cols-3">
+        {CHAPTERS.map(({ title, status, bg, text, rotate, body }) => (
+          <div
             key={title}
-            className="flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+            className={`${rotate} ${bg} ${text} rounded-lg border-[3px] border-ink p-6 shadow-card transition-transform duration-300 hover:rotate-0`}
           >
-            <div className="sm:w-2/5">
-              <h3 className="font-display text-2xl font-semibold">{title}</h3>
-              <p className="mt-0.5 text-sm font-medium text-vermillion">{status}</p>
-            </div>
-            <p className="max-w-md leading-relaxed text-ink-soft sm:w-3/5">{text}</p>
-          </li>
+            <span className="inline-block rounded border-2 border-ink bg-paper-white px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-ink">
+              {status}
+            </span>
+            <h3 className="mt-4 font-display text-2xl font-bold">{title}</h3>
+            <p className="mt-2 leading-relaxed opacity-90">{body}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
 
 function ThemeIndex() {
   return (
-    <section id="categories" className="bg-parchment-deep bg-paper-grain">
-      <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28">
-        <h2 className="font-display text-3xl font-semibold sm:text-4xl">An index of themes</h2>
-        <p className="mt-4 max-w-xl text-lg text-ink-soft">
-          From the epics to the everyday &mdash; every story finds its place here.
+    <section id="categories" className="bg-paper-white bg-halftone py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
+          Worlds within KATHA
+        </h2>
+        <p className="mt-4 max-w-xl text-lg text-ink/70">
+          From the Ramayana to the republic &mdash; pick a world and step in.
         </p>
 
-        <ul className="mt-12 divide-y divide-ink/15 border-y border-ink/15">
-          {CATEGORIES.map(({ name, native, text }) => (
-            <li key={name} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-6">
-              <div className="flex items-baseline gap-3 sm:w-2/5">
-                <span lang="hi" className="font-devanagari text-xl font-semibold text-vermillion">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {CATEGORIES.map(({ name, native, text }, index) => {
+            const style = PANEL_STYLES[index % PANEL_STYLES.length];
+            const rotate = ROTATIONS[index % ROTATIONS.length];
+            return (
+              <div
+                key={name}
+                className={`${rotate} ${style.bg} ${style.text} flex h-full flex-col rounded-lg border-[3px] border-ink p-5 shadow-card transition-transform duration-300 hover:rotate-0`}
+              >
+                <span lang="hi" className={`font-devanagari text-2xl font-bold ${style.accent}`}>
                   {native}
                 </span>
-                <span className="font-display text-lg font-semibold">{name}</span>
+                <h3 className="mt-1 font-display text-lg font-bold">{name}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed opacity-90">{text}</p>
               </div>
-              <p className="text-sm text-ink-soft sm:w-3/5">{text}</p>
-            </li>
-          ))}
-          <li className="py-5 text-sm italic text-ink-soft">And more, as the community grows.</li>
-        </ul>
+            );
+          })}
+          <div className="flex h-full flex-col items-center justify-center rounded-lg border-[3px] border-dashed border-ink/40 p-5 text-center">
+            <p className="font-display text-lg font-bold text-ink">And more</p>
+            <p className="mt-1.5 text-sm text-ink/60">New worlds open as the community grows.</p>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -134,17 +166,20 @@ function ThemeIndex() {
 
 function ClosingCta() {
   return (
-    <section className="bg-indigo-deep bg-ink-grain px-4 py-24 text-center text-parchment-light sm:px-6">
-      <h2 className="font-display text-3xl font-semibold text-parchment-light sm:text-4xl">
-        Be one of the first storytellers.
-      </h2>
-      <p className="mx-auto mt-4 max-w-md text-lg text-parchment-light/80">
-        Create a free account and help shape a home for India&rsquo;s stories.
-      </p>
-      <div className="mt-8 flex justify-center">
-        <Button as={Link} to="/register" size="large">
-          Join KATHA
-        </Button>
+    <section className="relative overflow-hidden bg-crimson-deep bg-halftone-light px-4 py-24 text-center text-paper sm:px-6">
+      <Sunburst className="pointer-events-none absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 animate-spin-slow text-marigold/10 motion-reduce:animate-none" />
+      <div className="relative">
+        <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight text-paper sm:text-4xl">
+          Become part of the legend
+        </h2>
+        <p className="mx-auto mt-4 max-w-md text-lg text-paper/85">
+          Create a free account and help write the next chapter of India&rsquo;s story.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <Button as={Link} to="/register" variant="light" size="large">
+            Join KATHA
+          </Button>
+        </div>
       </div>
     </section>
   );

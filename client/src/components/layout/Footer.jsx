@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { GithubIcon, InstagramIcon, LinkedinIcon } from '../common/Icons';
+import { Chakra, GithubIcon, InstagramIcon, LinkedinIcon } from '../common/Icons';
 import Logo from '../common/Logo';
 
 const YEAR = new Date().getFullYear();
@@ -11,30 +11,31 @@ const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/devkingcric', Icon: InstagramIcon },
 ];
 
-const LINK = 'underline-offset-4 transition-colors hover:text-gold-leaf hover:underline';
+const LINK = 'underline-offset-4 transition-colors hover:text-marigold hover:underline';
 
 export default function Footer() {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <footer className="bg-indigo-deep bg-ink-grain text-parchment-light/85">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="relative overflow-hidden bg-navy-deep bg-halftone-light text-paper/90">
+      <Chakra className="pointer-events-none absolute -right-24 -top-24 size-72 text-paper/10" />
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
             <Logo className="size-10" />
-            <span className="font-display text-2xl font-semibold tracking-wide text-parchment-light">KATHA</span>
+            <span className="font-display text-2xl font-bold tracking-wide text-paper">KATHA</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed">
-            Preserving the past, inspiring the future — one katha at a time.
+            Gods, kings and storytellers &mdash; preserving the past, inspiring the future.
           </p>
         </div>
 
         <nav aria-label="Footer">
-          <h2 className="text-sm font-semibold text-gold-leaf">Explore</h2>
+          <h2 className="text-sm font-bold text-marigold">Explore</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
               <Link to={{ pathname: '/', hash: '#features' }} className={LINK}>
-                What we&rsquo;re building
+                The sagas
               </Link>
             </li>
             <li>
@@ -60,7 +61,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="text-sm font-semibold text-gold-leaf">Connect</h2>
+          <h2 className="text-sm font-bold text-marigold">Connect</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {SOCIALS.map(({ label, href, Icon }) => (
               <li key={label}>
@@ -79,10 +80,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-parchment-light/15">
+      <div className="relative border-t-[3px] border-paper/20">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>&copy; {YEAR} KATHA, built by Raj Roy (KiNG) for the RKC_BHARAT Initiative.</p>
-          <p className="font-devanagari text-sm text-gold-leaf" lang="hi">
+          <p className="font-devanagari text-sm font-semibold text-marigold" lang="hi">
             जय हिन्द
           </p>
         </div>

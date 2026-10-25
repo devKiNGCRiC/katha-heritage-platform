@@ -1,21 +1,21 @@
 import { forwardRef } from 'react';
 
 const BASE =
-  'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition duration-200 active:translate-y-px';
+  'inline-flex items-center justify-center gap-2 rounded-lg border-[3px] border-ink font-display font-semibold transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none';
 
 const SIZES = {
-  small: 'px-4 py-2 text-sm',
-  medium: 'px-6 py-3 text-base',
-  large: 'px-8 py-3.5 text-base sm:text-lg',
+  small: 'px-4 py-1.5 text-sm',
+  medium: 'px-6 py-2.5 text-base',
+  large: 'px-8 py-3.5 text-lg sm:text-xl',
 };
 
 const VARIANTS = {
-  primary: 'bg-vermillion text-parchment-light shadow-sm hover:bg-vermillion-deep',
-  secondary: 'bg-indigo text-parchment-light hover:bg-indigo-deep',
-  outline: 'border-2 border-ink text-ink hover:bg-ink hover:text-parchment-light',
-  ghost: 'text-ink hover:bg-ink/10',
-  light: 'border-2 border-parchment-light/70 text-parchment-light hover:bg-parchment-light/10',
-  danger: 'bg-red-700 text-white hover:bg-red-800',
+  primary: 'bg-crimson text-paper-white shadow-pop hover:bg-crimson-deep',
+  secondary: 'bg-navy text-paper-white shadow-pop hover:bg-navy-deep',
+  outline: 'border-ink bg-paper-white text-ink shadow-pop hover:bg-marigold/40',
+  ghost: 'border-transparent text-ink shadow-none hover:bg-ink/10',
+  light: 'border-paper-white bg-transparent text-paper-white shadow-[5px_5px_0_var(--color-paper-white)] hover:bg-paper-white/10',
+  danger: 'bg-red-700 text-white shadow-pop hover:bg-red-800',
 };
 
 function Spinner() {

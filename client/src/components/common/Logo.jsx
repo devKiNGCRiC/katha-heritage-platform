@@ -1,11 +1,16 @@
+const SPOKES = Array.from({ length: 8 }, (_, i) => i * 45);
+
 export default function Logo({ className = 'size-9' }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" className={className} aria-hidden="true" focusable="false">
-      <rect width="40" height="40" rx="8" fill="#B23A2E" />
-      <circle cx="20" cy="5.2" r="1.2" fill="#B8923F" />
-      <path d="M20 6l3.5 6h-7zM20 10.5l6 8.5H14zM20 15.5L29 27H11z" fill="#F3EAD2" />
-      <rect x="9" y="27" width="22" height="5" rx="1" fill="#232A4D" />
-      <path d="M17.5 32v-2.5a2.5 2.5 0 015 0V32z" fill="#B8923F" />
+      <circle cx="20" cy="20" r="19" fill="#FF9933" stroke="#171310" strokeWidth="1.6" />
+      <circle cx="20" cy="20" r="13" fill="#FFFDF7" stroke="#171310" strokeWidth="1.2" />
+      <g stroke="#16317D" strokeWidth="1.6" strokeLinecap="round">
+        {SPOKES.map((angle) => (
+          <line key={angle} x1="20" y1="20" x2="20" y2="10.5" transform={`rotate(${angle} 20 20)`} />
+        ))}
+      </g>
+      <circle cx="20" cy="20" r="2.6" fill="#16317D" />
     </svg>
   );
 }
