@@ -6,7 +6,7 @@ import Button from '../common/Button';
 import { CloseIcon, MenuIcon } from '../common/Icons';
 import Logo from '../common/Logo';
 
-const NAV_BASE = 'rounded-md px-3 py-2 text-sm font-bold transition-colors hover:text-crimson-deep';
+const NAV_BASE = 'rounded-full px-3 py-1.5 text-sm font-semibold transition-colors hover:text-gold';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -35,14 +35,14 @@ export default function Header() {
         to="/"
         end
         onClick={closeMenu}
-        className={({ isActive }) => `${NAV_BASE} ${isActive ? 'text-crimson-deep' : 'text-ink'}`}
+        className={({ isActive }) => `${NAV_BASE} ${isActive ? 'text-gold' : 'text-mist/80'}`}
       >
         Home
       </NavLink>
-      <Link to={{ pathname: '/', hash: '#features' }} onClick={closeMenu} className={`${NAV_BASE} text-ink`}>
+      <Link to={{ pathname: '/', hash: '#features' }} onClick={closeMenu} className={`${NAV_BASE} text-mist/80`}>
         Chapters
       </Link>
-      <Link to={{ pathname: '/', hash: '#categories' }} onClick={closeMenu} className={`${NAV_BASE} text-ink`}>
+      <Link to={{ pathname: '/', hash: '#categories' }} onClick={closeMenu} className={`${NAV_BASE} text-mist/80`}>
         Themes
       </Link>
     </>
@@ -50,7 +50,7 @@ export default function Header() {
 
   const authActions = user ? (
     <>
-      <span className="max-w-[9rem] truncate text-sm font-semibold text-ink" title={user.name}>
+      <span className="max-w-[9rem] truncate text-sm font-semibold text-mist" title={user.name}>
         {user.name}
       </span>
       <Button variant="outline" size="small" onClick={handleLogout}>
@@ -69,11 +69,11 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-paper/95 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-4 z-40 mx-auto w-full max-w-5xl px-4 sm:px-6">
+      <div className="glass relative flex h-16 items-center justify-between gap-4 rounded-full px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" aria-label="KATHA home">
-          <Logo className="size-9" />
-          <span className="font-display text-2xl font-bold tracking-wide text-ink">KATHA</span>
+          <Logo className="size-9 drop-shadow-[0_0_10px_rgb(255_211_110_/_0.55)]" />
+          <span className="font-epic text-xl font-bold tracking-wide text-mist">KATHA</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -84,7 +84,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center rounded-lg text-ink hover:bg-ink/10 md:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-full text-mist hover:bg-white/10 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -92,18 +92,16 @@ export default function Header() {
         >
           {open ? <CloseIcon className="size-6" /> : <MenuIcon className="size-6" />}
         </button>
-      </div>
 
-      {open && (
-        <div id="mobile-menu" className="border-t-[3px] border-ink bg-paper md:hidden">
-          <nav aria-label="Mobile" className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
-            {links}
-          </nav>
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 border-t border-ink/20 px-4 py-4 sm:px-6">
-            {authActions}
+        {open && (
+          <div id="mobile-menu" className="glass absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-2xl p-4 md:hidden">
+            <nav aria-label="Mobile" className="flex flex-col gap-1">
+              {links}
+            </nav>
+            <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-white/15 pt-3">{authActions}</div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }

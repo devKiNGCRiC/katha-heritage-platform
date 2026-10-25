@@ -6,7 +6,7 @@ export default function FormError({ message }) {
   return (
     <div
       role="alert"
-      className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3.5 text-sm font-medium text-red-800"
+      className="flex items-start gap-2.5 rounded-lg border border-ember/40 bg-ember/15 p-3.5 text-sm font-medium text-mist"
     >
       <AlertIcon className="mt-0.5 size-5 shrink-0" />
       <span>{message}</span>

@@ -1,21 +1,23 @@
 import { forwardRef } from 'react';
 
 const BASE =
-  'inline-flex items-center justify-center gap-2 rounded-lg border-[3px] border-ink font-display font-semibold transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none';
+  'inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold transition-all duration-200 active:scale-[0.97]';
 
 const SIZES = {
   small: 'px-4 py-1.5 text-sm',
   medium: 'px-6 py-2.5 text-base',
-  large: 'px-8 py-3.5 text-lg sm:text-xl',
+  large: 'px-8 py-3.5 text-lg',
 };
 
 const VARIANTS = {
-  primary: 'bg-crimson text-paper-white shadow-pop hover:bg-crimson-deep',
-  secondary: 'bg-navy text-paper-white shadow-pop hover:bg-navy-deep',
-  outline: 'border-ink bg-paper-white text-ink shadow-pop hover:bg-marigold/40',
-  ghost: 'border-transparent text-ink shadow-none hover:bg-ink/10',
-  light: 'border-paper-white bg-transparent text-paper-white shadow-[5px_5px_0_var(--color-paper-white)] hover:bg-paper-white/10',
-  danger: 'bg-red-700 text-white shadow-pop hover:bg-red-800',
+  primary:
+    'bg-linear-to-r from-saffron to-gold text-void shadow-[0_0_30px_rgb(255_153_51_/_0.45)] hover:shadow-[0_0_42px_rgb(255_211_110_/_0.6)] hover:brightness-105',
+  secondary:
+    'bg-linear-to-r from-astra to-astra-deep text-mist shadow-[0_0_30px_rgb(193_78_255_/_0.4)] hover:shadow-[0_0_42px_rgb(193_78_255_/_0.55)]',
+  outline: 'glass text-mist hover:bg-white/10',
+  ghost: 'text-mist hover:bg-white/10',
+  light: 'glass text-mist hover:bg-white/10',
+  danger: 'bg-ember text-mist shadow-[0_0_28px_rgb(255_85_102_/_0.4)] hover:bg-ember-deep',
 };
 
 function Spinner() {

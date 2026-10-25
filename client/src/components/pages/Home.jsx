@@ -1,46 +1,43 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
-import { Sunburst } from '../common/Icons';
+import { Chakra, Sunburst } from '../common/Icons';
+
+const DEVANAGARI_NUMERALS = ['१', '२', '३'];
 
 const CHAPTERS = [
   {
     title: 'Stories',
     status: 'Coming first',
-    bg: 'bg-saffron',
-    text: 'text-ink',
-    rotate: '-rotate-2',
+    glow: 'shadow-[0_0_50px_rgb(255_153_51_/_0.22)]',
+    ring: 'text-saffron',
     body: 'Read and share mythology, history and folk tales, organised by region, era and theme.',
   },
   {
     title: 'Community',
     status: 'Planned',
-    bg: 'bg-crimson-deep',
-    text: 'text-paper',
-    rotate: 'rotate-2',
+    glow: 'shadow-[0_0_50px_rgb(193_78_255_/_0.22)]',
+    ring: 'text-astra',
     body: 'Follow storytellers, join the conversation, ask experts and grow a circle of cultural ambassadors.',
   },
   {
     title: 'Cultural Maps',
     status: 'Planned',
-    bg: 'bg-navy',
-    text: 'text-paper',
-    rotate: '-rotate-2',
+    glow: 'shadow-[0_0_50px_rgb(53_224_200_/_0.22)]',
+    ring: 'text-teal',
     body: 'Travel India on an interactive map of temples, forts and heritage sites, each with its own stories.',
   },
 ];
 
-const PANEL_STYLES = [
-  { bg: 'bg-saffron', text: 'text-ink', accent: 'text-navy' },
-  { bg: 'bg-navy', text: 'text-paper', accent: 'text-marigold' },
-  { bg: 'bg-crimson-deep', text: 'text-paper', accent: 'text-marigold' },
-  { bg: 'bg-marigold', text: 'text-ink', accent: 'text-crimson-deep' },
+const ACCENTS = [
+  { ring: 'text-saffron', hoverGlow: 'hover:shadow-[0_0_40px_rgb(255_153_51_/_0.18)]' },
+  { ring: 'text-astra', hoverGlow: 'hover:shadow-[0_0_40px_rgb(193_78_255_/_0.18)]' },
+  { ring: 'text-teal', hoverGlow: 'hover:shadow-[0_0_40px_rgb(53_224_200_/_0.18)]' },
+  { ring: 'text-gold', hoverGlow: 'hover:shadow-[0_0_40px_rgb(255_211_110_/_0.18)]' },
 ];
 
-const ROTATIONS = ['-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
-
 const CATEGORIES = [
-  { name: 'Mythology', native: 'पुराण', text: 'Epics, deities and the tales that shaped belief.' },
+  { name: 'Mythology', native: 'पुराण', text: 'Epics, deities and the tales that shaped belief.', feature: true },
   { name: 'History', native: 'इतिहास', text: 'Dynasties, movements and the people between the dates.' },
   { name: 'Folk Tales', native: 'लोक कथा', text: 'Regional stories carried by voice across generations.' },
   { name: 'Geography', native: 'भूगोल', text: 'Rivers, mountains and the meaning of place.' },
@@ -51,47 +48,44 @@ const CATEGORIES = [
 
 function Hero({ user }) {
   return (
-    <section className="relative overflow-hidden bg-navy bg-halftone-light text-paper">
-      <Sunburst className="pointer-events-none absolute -right-32 top-1/2 size-[46rem] -translate-y-1/2 animate-spin-slow text-saffron/25 motion-reduce:animate-none lg:-right-16" />
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden px-4 py-24 sm:px-6">
+      <Sunburst className="pointer-events-none absolute left-1/2 top-1/2 size-[50rem] -translate-x-1/2 -translate-y-1/2 animate-spin-slow text-saffron/15 blur-md" />
+      <Sunburst className="pointer-events-none absolute left-1/2 top-1/2 size-[50rem] -translate-x-1/2 -translate-y-1/2 animate-pulse-slow text-gold/10 blur-2xl" />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
-        <div className="max-w-2xl animate-rise">
-          <p lang="hi" className="font-devanagari text-7xl font-bold leading-none text-marigold sm:text-8xl">
-            कथा
-          </p>
+      <div className="relative mx-auto max-w-3xl text-center animate-rise">
+        <span lang="hi" className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-devanagari text-base font-semibold text-gold">
+          कथा
+        </span>
 
-          <h1 className="mt-6 font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-6xl">
-            Gods. Kings. Legends.
-            <br />
-            Every tale India has ever told.
-          </h1>
+        <h1 className="mt-7 font-epic text-4xl font-bold leading-tight text-mist text-glow sm:text-5xl lg:text-6xl">
+          Step into a world where legends live.
+        </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/85">
-            KATHA gathers the myths, the empires and the folk legends whispered for centuries into one home for
-            every story India has ever told.
-          </p>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-mist/75">
+          KATHA is a portal into the Ramayana, the Mahabharata and a thousand forgotten tales &mdash; reborn for a
+          new generation.
+        </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-5">
-            {user ? (
-              <>
-                <p className="text-paper/90">
-                  Welcome back, <strong className="font-bold text-marigold">{user.name}</strong>.
-                </p>
-                <Button as={Link} to={{ pathname: '/', hash: '#features' }} variant="light" size="large">
-                  See what&rsquo;s coming
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button as={Link} to="/register" size="large">
-                  Join KATHA
-                </Button>
-                <Button as={Link} to="/login" variant="light" size="large">
-                  Sign in
-                </Button>
-              </>
-            )}
-          </div>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
+          {user ? (
+            <>
+              <p className="text-mist/85">
+                Welcome back, <strong className="font-bold text-gold">{user.name}</strong>.
+              </p>
+              <Button as={Link} to={{ pathname: '/', hash: '#features' }} variant="outline" size="large">
+                See what&rsquo;s coming
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button as={Link} to="/register" size="large">
+                Enter KATHA
+              </Button>
+              <Button as={Link} to="/login" variant="outline" size="large">
+                Sign in
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -100,25 +94,21 @@ function Hero({ user }) {
 
 function Chapters() {
   return (
-    <section id="features" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-      <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
-        The sagas begin
-      </h2>
-      <p className="mt-4 max-w-xl text-lg text-ink/70">
+    <section id="features" className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <h2 className="font-epic text-3xl font-bold text-mist sm:text-4xl">The sagas begin</h2>
+      <p className="mt-4 max-w-xl text-lg text-mist/70">
         Every great epic unfolds one chapter at a time. Here is what is opening first.
       </p>
 
       <div className="mt-12 grid gap-8 sm:grid-cols-3">
-        {CHAPTERS.map(({ title, status, bg, text, rotate, body }) => (
-          <div
-            key={title}
-            className={`${rotate} ${bg} ${text} rounded-lg border-[3px] border-ink p-6 shadow-card transition-transform duration-300 hover:rotate-0`}
-          >
-            <span className="inline-block rounded border-2 border-ink bg-paper-white px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-ink">
-              {status}
-            </span>
-            <h3 className="mt-4 font-display text-2xl font-bold">{title}</h3>
-            <p className="mt-2 leading-relaxed opacity-90">{body}</p>
+        {CHAPTERS.map(({ title, status, glow, ring, body }, index) => (
+          <div key={title} className={`glass relative rounded-3xl p-7 ${glow}`}>
+            <div className={`neu absolute -top-5 left-7 flex size-11 items-center justify-center rounded-full font-devanagari text-lg font-bold ${ring}`}>
+              {DEVANAGARI_NUMERALS[index]}
+            </div>
+            <p className={`mt-4 text-xs font-bold uppercase tracking-[0.2em] ${ring}`}>{status}</p>
+            <h3 className="mt-3 font-epic text-2xl font-bold text-mist">{title}</h3>
+            <p className="mt-2 leading-relaxed text-mist/70">{body}</p>
           </div>
         ))}
       </div>
@@ -128,36 +118,33 @@ function Chapters() {
 
 function ThemeIndex() {
   return (
-    <section id="categories" className="bg-paper-white bg-halftone py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
-          Worlds within KATHA
-        </h2>
-        <p className="mt-4 max-w-xl text-lg text-ink/70">
-          From the Ramayana to the republic &mdash; pick a world and step in.
-        </p>
+    <section id="categories" className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <h2 className="font-epic text-3xl font-bold text-mist sm:text-4xl">Worlds within KATHA</h2>
+      <p className="mt-4 max-w-xl text-lg text-mist/70">
+        From the Ramayana to the republic &mdash; pick a world and step in.
+      </p>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map(({ name, native, text }, index) => {
-            const style = PANEL_STYLES[index % PANEL_STYLES.length];
-            const rotate = ROTATIONS[index % ROTATIONS.length];
-            return (
-              <div
-                key={name}
-                className={`${rotate} ${style.bg} ${style.text} flex h-full flex-col rounded-lg border-[3px] border-ink p-5 shadow-card transition-transform duration-300 hover:rotate-0`}
-              >
-                <span lang="hi" className={`font-devanagari text-2xl font-bold ${style.accent}`}>
-                  {native}
-                </span>
-                <h3 className="mt-1 font-display text-lg font-bold">{name}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed opacity-90">{text}</p>
-              </div>
-            );
-          })}
-          <div className="flex h-full flex-col items-center justify-center rounded-lg border-[3px] border-dashed border-ink/40 p-5 text-center">
-            <p className="font-display text-lg font-bold text-ink">And more</p>
-            <p className="mt-1.5 text-sm text-ink/60">New worlds open as the community grows.</p>
-          </div>
+      <div className="mt-12 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {CATEGORIES.map(({ name, native, text, feature }, index) => {
+          const accent = ACCENTS[index % ACCENTS.length];
+          return (
+            <div
+              key={name}
+              className={`glass flex flex-col rounded-2xl p-6 transition-shadow duration-300 ${accent.hoverGlow} ${
+                feature ? 'sm:col-span-2 lg:col-span-2' : ''
+              }`}
+            >
+              <span lang="hi" className={`font-devanagari text-2xl font-bold ${accent.ring}`}>
+                {native}
+              </span>
+              <h3 className="mt-1 font-epic text-lg font-bold text-mist">{name}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-mist/65">{text}</p>
+            </div>
+          );
+        })}
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-white/20 p-6 text-center">
+          <p className="font-epic text-lg font-bold text-mist/80">And more</p>
+          <p className="mt-1.5 text-sm text-mist/55">New worlds open as the community grows.</p>
         </div>
       </div>
     </section>
@@ -166,18 +153,16 @@ function ThemeIndex() {
 
 function ClosingCta() {
   return (
-    <section className="relative overflow-hidden bg-crimson-deep bg-halftone-light px-4 py-24 text-center text-paper sm:px-6">
-      <Sunburst className="pointer-events-none absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 animate-spin-slow text-marigold/10 motion-reduce:animate-none" />
-      <div className="relative">
-        <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight text-paper sm:text-4xl">
-          Become part of the legend
-        </h2>
-        <p className="mx-auto mt-4 max-w-md text-lg text-paper/85">
+    <section className="relative mx-auto max-w-4xl px-4 py-24 sm:px-6">
+      <Chakra className="pointer-events-none absolute left-1/2 top-1/2 size-[36rem] -translate-x-1/2 -translate-y-1/2 animate-spin-slow text-gold/10" />
+      <div className="glass relative rounded-[2rem] px-6 py-16 text-center shadow-[0_0_70px_rgb(255_153_51_/_0.15)] sm:px-12">
+        <h2 className="font-epic text-3xl font-bold text-mist text-glow sm:text-4xl">Become part of the legend</h2>
+        <p className="mx-auto mt-4 max-w-md text-lg text-mist/75">
           Create a free account and help write the next chapter of India&rsquo;s story.
         </p>
         <div className="mt-8 flex justify-center">
-          <Button as={Link} to="/register" variant="light" size="large">
-            Join KATHA
+          <Button as={Link} to="/register" size="large">
+            Enter KATHA
           </Button>
         </div>
       </div>

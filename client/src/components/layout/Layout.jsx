@@ -32,15 +32,15 @@ export default function Layout() {
   }, [pathname, hash, key, navigationType]);
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="relative flex min-h-dvh flex-col overflow-x-clip bg-cosmic bg-stars">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border-[3px] focus:border-ink focus:bg-navy focus:px-4 focus:py-2 focus:font-bold focus:text-paper"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 glass focus:rounded-full focus:px-4 focus:py-2 focus:font-bold focus:text-mist"
       >
         Skip to content
       </a>
       <Header />
-      <main id="main" className="flex-1">
+      <main id="main" className="relative flex-1">
         <Outlet />
       </main>
       <Footer />

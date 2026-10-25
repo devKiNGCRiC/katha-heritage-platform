@@ -1,37 +1,45 @@
 @import "tailwindcss";
 
 @theme static {
-  --color-ink: #171310;
-  --color-paper: #fff6e3;
-  --color-paper-white: #fffdf7;
+  --color-void: #0b0714;
+  --color-void-deep: #050309;
+  --color-mist: #f4f1fa;
+  --color-gold: #ffd36e;
   --color-saffron: #ff9933;
-  --color-saffron-deep: #e07b17;
-  --color-marigold: #ffc914;
-  --color-crimson: #d7263d;
-  --color-crimson-deep: #a81e30;
-  --color-navy: #16317d;
-  --color-navy-deep: #0e2057;
-  --color-flag-green: #138808;
+  --color-ember: #ff5566;
+  --color-ember-deep: #d13349;
+  --color-astra: #c14eff;
+  --color-astra-deep: #9a2fe0;
+  --color-teal: #35e0c8;
 
-  --font-display: "Baloo 2", ui-rounded, "Segoe UI", sans-serif;
-  --font-sans: "Hind", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-devanagari: "Hind", "Noto Sans Devanagari", sans-serif;
+  --font-epic: "Cinzel", ui-serif, serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-devanagari: "Noto Serif Devanagari", "Noto Sans Devanagari", sans-serif;
 
-  --shadow-pop: 5px 5px 0 var(--color-ink);
-  --shadow-pop-sm: 3px 3px 0 var(--color-ink);
-  --shadow-card: 5px 5px 0 var(--color-ink);
-
-  --animate-rise: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-spin-slow: spin 40s linear infinite;
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-pulse-slow: pulse-slow 6s ease-in-out infinite;
+  --animate-spin-slow: spin 50s linear infinite;
 
   @keyframes rise {
     from {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(16px);
     }
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.06);
     }
   }
 }
@@ -39,12 +47,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-paper font-sans text-ink antialiased;
+    @apply bg-void font-sans text-mist antialiased;
     margin: 0;
     min-height: 100dvh;
     text-rendering: optimizeLegibility;
@@ -54,35 +62,64 @@
   h2,
   h3,
   h4 {
-    @apply font-display text-ink;
-    letter-spacing: -0.01em;
+    @apply font-epic text-mist;
+    letter-spacing: 0.01em;
     text-wrap: balance;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-crimson-deep);
+    outline: 3px solid var(--color-gold);
     outline-offset: 2px;
   }
 
-  :is(.bg-navy, .bg-navy-deep, .bg-crimson, .bg-crimson-deep) :focus-visible {
-    outline-color: var(--color-marigold);
-  }
-
   ::selection {
-    background: rgb(255 201 20 / 0.55);
+    background: rgb(193 78 255 / 0.4);
   }
 }
 
-/* Comic-print halftone dots, for light (paper) sections */
-@utility bg-halftone {
-  background-image: radial-gradient(circle, rgb(23 19 16 / 0.12) 1.6px, transparent 1.6px);
-  background-size: 14px 14px;
+/* The cosmic backdrop: a nebula of saffron, astra-violet and teal light over the void. Fixed, so it never seams between sections. */
+@utility bg-cosmic {
+  background:
+    radial-gradient(55% 45% at 15% 0%, rgb(255 153 51 / 0.22), transparent 62%),
+    radial-gradient(50% 40% at 90% 8%, rgb(193 78 255 / 0.2), transparent 62%),
+    radial-gradient(60% 50% at 50% 100%, rgb(53 224 200 / 0.1), transparent 65%),
+    var(--color-void);
 }
 
-/* The same dot screen, lightened, for dark sections */
-@utility bg-halftone-light {
-  background-image: radial-gradient(circle, rgb(255 246 227 / 0.12) 1.6px, transparent 1.6px);
-  background-size: 14px 14px;
+/* A scattering of distant stars */
+@utility bg-stars {
+  background-image:
+    radial-gradient(circle, rgb(244 241 250 / 0.55) 1px, transparent 1px),
+    radial-gradient(circle, rgb(244 241 250 / 0.3) 1px, transparent 1px);
+  background-size: 68px 68px, 41px 41px;
+  background-position: 0 0, 22px 30px;
+}
+
+/* Glassmorphism: a pane of frosted light, not a flat card */
+@utility glass {
+  background: linear-gradient(155deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.02));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(255 255 255 / 0.14);
+}
+
+/* Neumorphism: soft-extruded from the void itself, like carved stone */
+@utility neu {
+  background: var(--color-void);
+  box-shadow:
+    8px 8px 18px rgb(0 0 0 / 0.55),
+    -6px -6px 16px rgb(255 255 255 / 0.04);
+}
+
+@utility neu-inset {
+  background: var(--color-void);
+  box-shadow:
+    inset 5px 5px 10px rgb(0 0 0 / 0.6),
+    inset -4px -4px 9px rgb(255 255 255 / 0.04);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 30px rgb(255 211 110 / 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

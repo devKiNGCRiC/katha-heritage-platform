@@ -11,28 +11,28 @@ const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/devkingcric', Icon: InstagramIcon },
 ];
 
-const LINK = 'underline-offset-4 transition-colors hover:text-marigold hover:underline';
+const LINK = 'underline-offset-4 transition-colors hover:text-gold hover:underline';
 
 export default function Footer() {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <footer className="relative overflow-hidden bg-navy-deep bg-halftone-light text-paper/90">
-      <Chakra className="pointer-events-none absolute -right-24 -top-24 size-72 text-paper/10" />
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="relative mt-24 overflow-hidden border-t border-white/10 pt-14">
+      <Chakra className="pointer-events-none absolute -right-20 -top-20 size-64 animate-spin-slow text-astra/10" />
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-10 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Logo className="size-10" />
-            <span className="font-display text-2xl font-bold tracking-wide text-paper">KATHA</span>
+            <Logo className="size-10 drop-shadow-[0_0_10px_rgb(255_211_110_/_0.5)]" />
+            <span className="font-epic text-xl font-bold tracking-wide text-mist">KATHA</span>
           </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed">
-            Gods, kings and storytellers &mdash; preserving the past, inspiring the future.
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-mist/70">
+            Gods, kings and storytellers &mdash; a portal into India&rsquo;s greatest legends.
           </p>
         </div>
 
         <nav aria-label="Footer">
-          <h2 className="text-sm font-bold text-marigold">Explore</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
+          <h2 className="text-sm font-bold text-gold">Explore</h2>
+          <ul className="mt-4 space-y-2.5 text-sm text-mist/75">
             <li>
               <Link to={{ pathname: '/', hash: '#features' }} className={LINK}>
                 The sagas
@@ -61,8 +61,8 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="text-sm font-bold text-marigold">Connect</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
+          <h2 className="text-sm font-bold text-gold">Connect</h2>
+          <ul className="mt-4 space-y-2.5 text-sm text-mist/75">
             {SOCIALS.map(({ label, href, Icon }) => (
               <li key={label}>
                 <a href={href} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${LINK}`}>
@@ -80,10 +80,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t-[3px] border-paper/20">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-mist/60 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>&copy; {YEAR} KATHA, built by Raj Roy (KiNG) for the RKC_BHARAT Initiative.</p>
-          <p className="font-devanagari text-sm font-semibold text-marigold" lang="hi">
+          <p className="font-devanagari text-sm font-semibold text-gold" lang="hi">
             जय हिन्द
           </p>
         </div>
