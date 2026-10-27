@@ -17,8 +17,8 @@ const Input = forwardRef(function Input({ label, error, hint, id, className = ''
         id={inputId}
         aria-invalid={error ? 'true' : undefined}
         aria-describedby={describedBy}
-        className={`block w-full rounded-xl border bg-white/5 px-4 py-3 text-base text-mist shadow-[inset_0_1px_3px_rgb(0_0_0_/_0.4)] backdrop-blur-sm transition placeholder:text-mist/35 focus:outline-none focus:ring-2 focus:ring-gold/60 ${
-          error ? 'border-ember' : 'border-white/15'
+        className={`block w-full rounded-md border bg-void/60 px-4 py-3 text-base text-mist shadow-[inset_0_1px_3px_rgb(0_0_0_/_0.5)] backdrop-blur-sm transition placeholder:text-mist/35 focus:outline-none focus:ring-2 focus:ring-teal/60 ${
+          error ? 'border-ember' : 'border-teal/25'
         }`}
         {...props}
       />

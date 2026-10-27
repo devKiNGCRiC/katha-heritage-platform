@@ -6,7 +6,7 @@ export default function NotFound() {
     <>
       <title>Page not found · KATHA</title>
       <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:py-32">
-      <p className="font-epic text-8xl font-bold text-ember/80 text-glow sm:text-9xl" aria-hidden="true">
+      <p className="font-epic text-8xl font-bold text-fire sm:text-9xl" aria-hidden="true">
         404
       </p>
       <h1 className="mt-4 font-epic text-3xl font-bold">This legend hasn&rsquo;t been written yet</h1>

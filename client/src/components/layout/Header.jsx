@@ -6,7 +6,7 @@ import Button from '../common/Button';
 import { CloseIcon, MenuIcon } from '../common/Icons';
 import Logo from '../common/Logo';
 
-const NAV_BASE = 'rounded-full px-3 py-1.5 text-sm font-semibold transition-colors hover:text-gold';
+const NAV_BASE = 'px-3 py-1.5 text-sm font-bold uppercase tracking-wide transition-colors hover:text-gold';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -70,9 +70,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-4 z-40 mx-auto w-full max-w-5xl px-4 sm:px-6">
-      <div className="glass relative flex h-16 items-center justify-between gap-4 rounded-full px-4 sm:px-6">
+      <div className="clip-hud relative flex h-16 items-center justify-between gap-4 border border-teal/30 bg-void/80 px-4 backdrop-blur-md sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" aria-label="KATHA home">
-          <Logo className="size-9 drop-shadow-[0_0_10px_rgb(255_211_110_/_0.55)]" />
+          <Logo className="size-9 drop-shadow-[0_0_10px_rgb(255_193_77_/_0.55)]" />
           <span className="font-epic text-xl font-bold tracking-wide text-mist">KATHA</span>
         </Link>
 
@@ -84,7 +84,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center rounded-full text-mist hover:bg-white/10 md:hidden"
+          className="inline-flex size-11 items-center justify-center text-mist hover:bg-white/10 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -94,11 +94,14 @@ export default function Header() {
         </button>
 
         {open && (
-          <div id="mobile-menu" className="glass absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-2xl p-4 md:hidden">
+          <div
+            id="mobile-menu"
+            className="clip-hud absolute inset-x-0 top-[calc(100%+0.5rem)] border border-teal/30 bg-void/90 p-4 backdrop-blur-md md:hidden"
+          >
             <nav aria-label="Mobile" className="flex flex-col gap-1">
               {links}
             </nav>
-            <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-white/15 pt-3">{authActions}</div>
+            <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-teal/20 pt-3">{authActions}</div>
           </div>
         )}
       </div>

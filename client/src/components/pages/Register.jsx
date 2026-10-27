@@ -9,7 +9,7 @@ import AuthPanel from '../layout/AuthPanel';
 import { clearError, registerUser } from '../../store/authSlice';
 
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
-const LINK = 'font-bold text-gold underline underline-offset-4 hover:text-saffron';
+const LINK = 'font-bold text-gold underline underline-offset-4 hover:text-ember';
 
 export default function Register() {
   const dispatch = useDispatch();

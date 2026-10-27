@@ -17,21 +17,21 @@ export default function Footer() {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-white/10 pt-14">
-      <Chakra className="pointer-events-none absolute -right-20 -top-20 size-64 animate-spin-slow text-astra/10" />
+    <footer className="relative mt-24 overflow-hidden border-t border-teal/20 pt-14">
+      <Chakra className="pointer-events-none absolute -right-20 -top-20 size-64 animate-spin-slow text-teal/10" />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-10 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Logo className="size-10 drop-shadow-[0_0_10px_rgb(255_211_110_/_0.5)]" />
+            <Logo className="size-10 drop-shadow-[0_0_10px_rgb(255_193_77/0.5)]" />
             <span className="font-epic text-xl font-bold tracking-wide text-mist">KATHA</span>
           </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-mist/70">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-mist/65">
             Gods, kings and storytellers &mdash; a portal into India&rsquo;s greatest legends.
           </p>
         </div>
 
         <nav aria-label="Footer">
-          <h2 className="text-sm font-bold text-gold">Explore</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-gold">Explore</h2>
           <ul className="mt-4 space-y-2.5 text-sm text-mist/75">
             <li>
               <Link to={{ pathname: '/', hash: '#features' }} className={LINK}>
@@ -61,7 +61,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="text-sm font-bold text-gold">Connect</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-gold">Connect</h2>
           <ul className="mt-4 space-y-2.5 text-sm text-mist/75">
             {SOCIALS.map(({ label, href, Icon }) => (
               <li key={label}>
@@ -80,8 +80,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-mist/60 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="relative border-t border-teal/20">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-mist/55 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>&copy; {YEAR} KATHA, built by Raj Roy (KiNG) for the RKC_BHARAT Initiative.</p>
           <p className="font-devanagari text-sm font-semibold text-gold" lang="hi">
             जय हिन्द

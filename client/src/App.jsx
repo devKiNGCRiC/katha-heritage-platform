@@ -9,7 +9,7 @@ import Register from './components/pages/Register';
 
 function FullPageLoader() {
   return (
-    <div className="grid min-h-dvh place-items-center bg-cosmic bg-stars" role="status" aria-live="polite">
+    <div className="grid min-h-dvh place-items-center bg-cinematic bg-hud-grid" role="status" aria-live="polite">
       <div className="flex flex-col items-center gap-4">
         <Logo className="size-14 animate-pulse motion-reduce:animate-none" />
         <p className="text-sm font-bold text-mist/70">Loading KATHA&hellip;</p>
