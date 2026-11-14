@@ -1,6 +1,6 @@
 # 🏛️ KATHA - The Great Indian Heritage Platform
 
-![KATHA Logo](./docs/assets/logo.png)
+![KATHA home page](./docs/screenshots/home.jpg)
 
 ## 📖 About KATHA
 
@@ -19,6 +19,21 @@ Empowering the next generation with deep knowledge of Indian culture, history, a
 - **Core Features**: Learning Platform, Blog, Social Community, Interactive Maps
 - **Tech Stack**: MERN + React Native
 - **Development Timeline**: 4 months (Sep 2025 - Dec 2025)
+
+## 🚧 Current Status
+
+This is an early, actively-developed solo project. Here's what's actually built versus what's still vision:
+
+| Area | Status |
+|---|---|
+| Backend auth API (register, login, JWT, `/me`) | ✅ Built, 15/15 tests passing |
+| Frontend (home, sign in, create account, routing) | ✅ Built — warm, literary design using public-domain Raja Ravi Varma paintings |
+| Live database (MongoDB Atlas) | ⏳ Not yet connected — register/login don't persist real users yet |
+| Stories (browse, read, write) | 📋 Planned next, not started |
+| Community, cultural maps | 📋 Planned, not started |
+| Mobile app (React Native) | 📋 Not started |
+
+Run it locally with `npm run install-deps` then `npm run dev` (see `client/README.md` and `server/.env.example` for setup).
 
 ## 🛠️ Technology Stack
 
