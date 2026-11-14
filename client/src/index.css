@@ -58,8 +58,8 @@
 
   /* WebKit (Chrome, Edge, Safari) */
   ::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 
   ::-webkit-scrollbar-track {
@@ -67,13 +67,14 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-terracotta);
-    border-radius: 999px;
-    border: 3px solid var(--color-paper-deep);
+    background-image: linear-gradient(180deg, var(--color-terracotta), var(--color-gold));
+    background-clip: padding-box;
+    border-radius: 6px;
+    border: 2px solid var(--color-paper-deep);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-terracotta-deep);
+    background-image: linear-gradient(180deg, var(--color-terracotta-deep), var(--color-gold-deep));
   }
 
   ::-webkit-scrollbar-corner {
@@ -103,10 +104,15 @@
   }
 }
 
-/* A fine paper-fibre speckle, for warm parchment sections */
+/*
+ * Paper fibre, as irregular fractal noise rather than a repeating dot
+ * grid (a uniform lattice reads as a digital pattern, not a material).
+ * The alpha channel is derived from feTurbulence's luminance, so the
+ * speckle itself is random; stitchTiles keeps the tile seamless.
+ */
 @utility bg-paper-grain {
-  background-image: radial-gradient(circle, rgb(43 29 20 / 0.08) 0.7px, transparent 0.7px);
-  background-size: 16px 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0.16 0.12 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 /* A soft lamp-light glow, for the dark leather header/footer */
