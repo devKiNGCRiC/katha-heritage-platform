@@ -1,37 +1,27 @@
 import { forwardRef } from 'react';
 
 const BASE =
-  'group relative inline-flex items-center justify-center gap-2 clip-hud-sm font-sans font-bold uppercase tracking-wide transition-all duration-200 active:scale-[0.97]';
+  'inline-flex items-center justify-center gap-2 rounded-md font-sans font-semibold transition-all duration-200 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none';
 
 const SIZES = {
-  small: 'px-4 py-1.5 text-xs',
-  medium: 'px-6 py-2.5 text-sm',
-  large: 'px-8 py-3.5 text-base',
+  small: 'px-4 py-1.5 text-sm',
+  medium: 'px-6 py-2.5 text-base',
+  large: 'px-8 py-3.5 text-lg',
 };
 
 const VARIANTS = {
-  primary: 'bg-linear-to-r from-ember via-gold to-ember text-void shadow-[0_0_30px_rgb(255_106_43_/_0.5)] hover:shadow-[0_0_44px_rgb(255_193_77_/_0.65)]',
-  secondary: 'bg-linear-to-r from-teal-deep to-teal text-void shadow-[0_0_28px_rgb(47_224_214_/_0.45)] hover:shadow-[0_0_40px_rgb(47_224_214_/_0.6)]',
-  outline: 'border border-teal/50 bg-void/60 text-mist backdrop-blur-sm hover:border-teal hover:bg-teal/10',
-  ghost: 'text-mist hover:bg-white/10',
-  light: 'border border-mist/40 bg-void/40 text-mist backdrop-blur-sm hover:border-mist hover:bg-white/10',
-  danger: 'bg-ember-deep text-mist shadow-[0_0_26px_rgb(214_64_26_/_0.5)] hover:brightness-110',
+  primary: 'bg-terracotta text-paper shadow-book-sm hover:bg-terracotta-deep',
+  secondary: 'bg-gold text-ink shadow-book-sm hover:bg-gold-deep',
+  outline: 'border-2 border-ink bg-card text-ink hover:bg-paper-deep',
+  ghost: 'text-ink hover:bg-ink/10',
+  light: 'border-2 border-paper/70 bg-transparent text-paper hover:bg-paper/10',
+  danger: 'bg-red-700 text-white shadow-book-sm hover:bg-red-800',
 };
-
-/** A diagonal shine that sweeps across on hover, like foil catching light. */
-function Shine() {
-  return (
-    <span
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -translate-x-[120%] -skew-x-12 bg-linear-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[120%]"
-    />
-  );
-}
 
 function Spinner() {
   return (
     <svg
-      className="relative size-5 animate-spin"
+      className="size-5 animate-spin"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -63,13 +53,12 @@ const Button = forwardRef(function Button(
 ) {
   const isDisabled = disabled || loading;
   const isNativeButton = Component === 'button';
-  const hasShine = variant === 'primary' || variant === 'secondary';
 
   const classes = [
     BASE,
     SIZES[size],
     VARIANTS[variant],
-    isDisabled ? 'pointer-events-none opacity-60' : 'cursor-pointer overflow-hidden',
+    isDisabled ? 'pointer-events-none opacity-60' : 'cursor-pointer',
     className,
   ]
     .filter(Boolean)
@@ -84,9 +73,8 @@ const Button = forwardRef(function Button(
       className={classes}
       {...props}
     >
-      {hasShine && !isDisabled && <Shine />}
       {loading && <Spinner />}
-      <span className="relative">{children}</span>
+      {children}
     </Component>
   );
 });

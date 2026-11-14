@@ -1,37 +1,46 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
-import Card from '../common/Card';
-import HudCorners from '../common/HudCorners';
-import { Chakra, SpeedLines } from '../common/Icons';
-
-const DEVANAGARI_NUMERALS = ['१', '२', '३'];
+import { Chakra } from '../common/Icons';
 
 const CHAPTERS = [
   {
+    number: '1',
     title: 'Stories',
     status: 'Coming first',
-    ring: 'text-ember',
+    accent: 'text-terracotta',
+    badge: 'bg-terracotta',
+    image: '/art/arjuna-subhadra.jpg',
+    ratio: '497 / 754',
+    caption: 'Arjuna and Subhadra',
     body: 'Read and share mythology, history and folk tales, organised by region, era and theme.',
   },
   {
+    number: '2',
     title: 'Community',
     status: 'Planned',
-    ring: 'text-teal',
+    accent: 'text-forest',
+    badge: 'bg-forest',
+    image: '/art/draupadi-pandavas.jpg',
+    ratio: '904 / 1231',
+    caption: 'Draupadi and the Pandavas',
     body: 'Follow storytellers, join the conversation, ask experts and grow a circle of cultural ambassadors.',
   },
   {
+    number: '3',
     title: 'Cultural Maps',
     status: 'Planned',
-    ring: 'text-holo-violet',
+    accent: 'text-gold-deep',
+    badge: 'bg-gold',
+    image: '/art/shiva-ascetic.jpg',
+    ratio: '741 / 1026',
+    caption: 'Shiva as an Ascetic',
     body: 'Travel India on an interactive map of temples, forts and heritage sites, each with its own stories.',
   },
 ];
 
-const ACCENTS = ['text-ember', 'text-teal', 'text-holo-violet', 'text-gold'];
-
 const CATEGORIES = [
-  { name: 'Mythology', native: 'पुराण', text: 'Epics, deities and the tales that shaped belief.', feature: true },
+  { name: 'Mythology', native: 'पुराण', text: 'Epics, deities and the tales that shaped belief.' },
   { name: 'History', native: 'इतिहास', text: 'Dynasties, movements and the people between the dates.' },
   { name: 'Folk Tales', native: 'लोक कथा', text: 'Regional stories carried by voice across generations.' },
   { name: 'Geography', native: 'भूगोल', text: 'Rivers, mountains and the meaning of place.' },
@@ -42,46 +51,59 @@ const CATEGORIES = [
 
 function Hero({ user }) {
   return (
-    <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden px-4 py-24 sm:px-6">
-      <SpeedLines className="pointer-events-none absolute left-1/2 top-1/2 size-[56rem] -translate-x-1/2 -translate-y-[58%] text-ember/25" />
-      <div className="pointer-events-none absolute left-1/2 top-[40%] size-[28rem] -translate-x-1/2 -translate-y-1/2 animate-drift rounded-full bg-ember/20 blur-3xl" />
-
-      <div className="relative mx-auto max-w-3xl text-center animate-rise">
-        <div className="inline-block rounded-full bg-holo p-[2px] animate-holo">
-          <span lang="hi" className="block rounded-full bg-void px-5 py-1.5 font-devanagari text-base font-bold text-gold">
+    <section className="bg-paper bg-paper-grain">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
+        <div className="animate-rise">
+          <span lang="hi" className="inline-block rounded-md bg-gold/20 px-4 py-1.5 font-devanagari text-base font-bold text-gold-deep">
             कथा
           </span>
+
+          <h1 className="mt-6 font-epic text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
+            Step into a world where <span className="text-fire">legends</span> live.
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+            KATHA is a home for readers and writers of India&rsquo;s stories &mdash; the Ramayana, the Mahabharata
+            and a thousand folk tales, gathered in one place and reborn for a new generation.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-5">
+            {user ? (
+              <>
+                <p className="text-ink">
+                  Welcome back, <strong className="font-bold text-terracotta">{user.name}</strong>.
+                </p>
+                <Button as={Link} to={{ pathname: '/', hash: '#features' }} variant="outline" size="large">
+                  See what&rsquo;s coming
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button as={Link} to="/register" size="large">
+                  Start reading
+                </Button>
+                <Button as={Link} to="/login" variant="outline" size="large">
+                  Sign in
+                </Button>
+              </>
+            )}
+          </div>
         </div>
 
-        <h1 className="mt-7 font-epic text-5xl font-bold leading-[1.08] text-fire sm:text-6xl lg:text-7xl">
-          Step into a world where legends live.
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-mist/75">
-          KATHA is a portal into the Ramayana, the Mahabharata and a thousand forgotten tales &mdash; reborn for a
-          new generation.
-        </p>
-
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
-          {user ? (
-            <>
-              <p className="text-mist/85">
-                Welcome back, <strong className="font-bold text-gold">{user.name}</strong>.
-              </p>
-              <Button as={Link} to={{ pathname: '/', hash: '#features' }} variant="outline" size="large">
-                See what&rsquo;s coming
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button as={Link} to="/register" size="large">
-                Enter KATHA
-              </Button>
-              <Button as={Link} to="/login" variant="outline" size="large">
-                Sign in
-              </Button>
-            </>
-          )}
+        <div className="mx-auto w-full max-w-sm">
+          <div
+            className="overflow-hidden rounded-lg border-2 border-ink/15 bg-card shadow-book"
+            style={{ aspectRatio: '1200 / 1600' }}
+          >
+            <img
+              src="/art/krishna-envoy.jpg"
+              alt="Raja Ravi Varma, Krishna as Envoy &mdash; Krishna pleading for peace before the Kurukshetra war"
+              className="size-full object-cover"
+            />
+          </div>
+          <p className="mt-3 text-center text-xs text-ink-soft">
+            Raja Ravi Varma, &ldquo;Krishna as Envoy&rdquo; &mdash; public domain
+          </p>
         </div>
       </div>
     </section>
@@ -90,23 +112,29 @@ function Hero({ user }) {
 
 function Chapters() {
   return (
-    <section id="features" className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-      <h2 className="font-epic text-3xl font-bold text-mist sm:text-4xl">The sagas begin</h2>
-      <p className="mt-4 max-w-xl text-lg text-mist/70">
+    <section id="features" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <h2 className="font-epic text-3xl font-bold sm:text-4xl">The sagas begin</h2>
+      <p className="mt-4 max-w-xl text-lg text-ink-soft">
         Every great epic unfolds one chapter at a time. Here is what is opening first.
       </p>
 
-      <div className="mt-14 grid gap-8 sm:grid-cols-3">
-        {CHAPTERS.map(({ title, status, ring, body }, index) => (
-          <Card key={title} className="relative p-7">
-            <HudCorners color={ring} />
-            <div className={`clip-hud-sm flex size-11 items-center justify-center border border-current bg-void font-devanagari text-lg font-bold ${ring}`}>
-              {DEVANAGARI_NUMERALS[index]}
+      <div className="mt-10 grid gap-8 sm:grid-cols-3">
+        {CHAPTERS.map(({ number, title, status, accent, badge, image, ratio, caption, body }) => (
+          <article key={title} className="overflow-hidden rounded-lg border-2 border-ink/15 bg-card shadow-book">
+            <div className="relative" style={{ aspectRatio: ratio }}>
+              <img src={image} alt={`Raja Ravi Varma, ${caption}`} className="size-full object-cover" />
+              <span
+                className={`absolute left-3 top-3 flex size-9 items-center justify-center rounded-md border-2 border-ink/15 font-epic text-base font-bold text-paper ${badge}`}
+              >
+                {number}
+              </span>
             </div>
-            <p className={`mt-5 text-xs font-bold uppercase tracking-[0.2em] ${ring}`}>{status}</p>
-            <h3 className="mt-3 font-epic text-2xl font-bold text-mist">{title}</h3>
-            <p className="mt-2 leading-relaxed text-mist/65">{body}</p>
-          </Card>
+            <div className="p-6">
+              <p className={`text-xs font-bold uppercase tracking-[0.18em] ${accent}`}>{status}</p>
+              <h3 className="mt-2 font-epic text-xl font-bold">{title}</h3>
+              <p className="mt-2 leading-relaxed text-ink-soft">{body}</p>
+            </div>
+          </article>
         ))}
       </div>
     </section>
@@ -115,34 +143,27 @@ function Chapters() {
 
 function ThemeIndex() {
   return (
-    <section id="categories" className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-      <h2 className="font-epic text-3xl font-bold text-mist sm:text-4xl">Worlds within KATHA</h2>
-      <p className="mt-4 max-w-xl text-lg text-mist/70">
-        From the Ramayana to the republic &mdash; pick a world and step in.
-      </p>
+    <section id="categories" className="bg-paper-deep bg-paper-grain">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <h2 className="font-epic text-3xl font-bold sm:text-4xl">Worlds within KATHA</h2>
+        <p className="mt-4 max-w-xl text-lg text-ink-soft">
+          From the Ramayana to the republic &mdash; pick a world and step in.
+        </p>
 
-      <div className="mt-14 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {CATEGORIES.map(({ name, native, text, feature }, index) => {
-          const ring = ACCENTS[index % ACCENTS.length];
-          return (
-            <Card
-              key={name}
-              className={`flex flex-col p-6 transition-colors duration-300 hover:border-current ${ring} ${
-                feature ? 'sm:col-span-2' : ''
-              }`}
-            >
-              <span lang="hi" className={`font-devanagari text-2xl font-bold ${ring}`}>
-                {native}
-              </span>
-              <h3 className="mt-1 font-epic text-lg font-bold text-mist">{name}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-mist/60">{text}</p>
-            </Card>
-          );
-        })}
-        <div className="clip-hud flex flex-col items-center justify-center border border-dashed border-mist/25 p-6 text-center">
-          <p className="font-epic text-lg font-bold text-mist/75">And more</p>
-          <p className="mt-1.5 text-sm text-mist/50">New worlds open as the community grows.</p>
-        </div>
+        <ul className="mt-10 divide-y divide-ink/15 border-y border-ink/15">
+          {CATEGORIES.map(({ name, native, text }) => (
+            <li key={name} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-6">
+              <div className="flex items-baseline gap-3 sm:w-2/5">
+                <span lang="hi" className="font-devanagari text-2xl font-bold text-terracotta">
+                  {native}
+                </span>
+                <span className="font-epic text-lg font-bold">{name}</span>
+              </div>
+              <p className="text-sm text-ink-soft sm:w-3/5">{text}</p>
+            </li>
+          ))}
+          <li className="py-5 text-sm italic text-ink-soft">And more, as the community grows.</li>
+        </ul>
       </div>
     </section>
   );
@@ -150,18 +171,27 @@ function ThemeIndex() {
 
 function ClosingCta() {
   return (
-    <section className="relative mx-auto max-w-4xl px-4 py-24 sm:px-6">
-      <Chakra className="pointer-events-none absolute left-1/2 top-1/2 size-[36rem] -translate-x-1/2 -translate-y-1/2 animate-spin-slow text-teal/10" />
-      <div className="relative bg-holo p-[2px] animate-holo clip-hud">
-        <div className="clip-hud border border-void bg-void/95 px-6 py-16 text-center sm:px-12">
-          <h2 className="font-epic text-3xl font-bold text-fire sm:text-4xl">Become part of the legend</h2>
-          <p className="mx-auto mt-4 max-w-md text-lg text-mist/75">
-            Create a free account and help write the next chapter of India&rsquo;s story.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Button as={Link} to="/register" size="large">
-              Enter KATHA
-            </Button>
+    <section className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+      <div className="grid overflow-hidden rounded-lg border-2 border-ink/15 bg-card shadow-book md:grid-cols-[0.8fr_1.2fr]">
+        <div className="relative hidden md:block" style={{ aspectRatio: '420 / 621' }}>
+          <img
+            src="/art/hero-kiratarjuniya.jpg"
+            alt="Raja Ravi Varma, Kiratarjuniya &mdash; Arjuna in combat with Shiva disguised as a hunter"
+            className="size-full object-cover"
+          />
+        </div>
+        <div className="relative flex flex-col justify-center overflow-hidden bg-leather bg-leather-glow px-6 py-14 text-center sm:px-10">
+          <Chakra className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 text-paper/[0.07]" />
+          <div className="relative">
+            <h2 className="font-epic text-2xl font-bold text-paper sm:text-3xl">Become part of the legend</h2>
+            <p className="mx-auto mt-4 max-w-sm text-paper/80">
+              Create a free account and help write the next chapter of India&rsquo;s story.
+            </p>
+            <div className="mt-7 flex justify-center">
+              <Button as={Link} to="/register" size="large">
+                Start reading
+              </Button>
+            </div>
           </div>
         </div>
       </div>

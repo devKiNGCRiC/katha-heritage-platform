@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 @theme static {
-  --color-void: #070f0e;
-  --color-void-deep: #040908;
-  --color-mist: #eef6f5;
-  --color-ember: #ff6a2b;
-  --color-ember-deep: #d6401a;
-  --color-gold: #ffc14d;
-  --color-teal: #2fe0d6;
-  --color-teal-deep: #138c86;
-  --color-holo-pink: #ff5fa8;
-  --color-holo-violet: #9b5cff;
+  --color-ink: #2b1d14;
+  --color-ink-soft: #6b5847;
+  --color-paper: #faf1e1;
+  --color-paper-deep: #eeddbb;
+  --color-card: #fffbf2;
+  --color-leather: #241812;
+  --color-leather-deep: #150d09;
+  --color-terracotta: #bd4430;
+  --color-terracotta-deep: #8f3220;
+  --color-gold: #c9972a;
+  --color-gold-deep: #a67a1e;
+  --color-forest: #2f6b4f;
 
   --font-epic: "Cinzel", ui-serif, serif;
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-devanagari: "Noto Serif Devanagari", "Noto Sans Devanagari", sans-serif;
 
+  --shadow-book: 6px 6px 0 var(--color-ink);
+  --shadow-book-sm: 4px 4px 0 var(--color-ink);
+
   --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-drift: drift 14s ease-in-out infinite;
-  --animate-holo: holo-shift 6s linear infinite;
-  --animate-spin-slow: spin 60s linear infinite;
+  --animate-spin-slow: spin 80s linear infinite;
 
   @keyframes rise {
     from {
@@ -29,25 +32,6 @@
     to {
       opacity: 1;
       transform: none;
-    }
-  }
-
-  @keyframes drift {
-    0%,
-    100% {
-      transform: translate(0, 0) scale(1);
-    }
-    50% {
-      transform: translate(2%, -3%) scale(1.05);
-    }
-  }
-
-  @keyframes holo-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 200% 50%;
     }
   }
 }
@@ -60,7 +44,7 @@
   }
 
   body {
-    @apply bg-void font-sans text-mist antialiased;
+    @apply bg-paper font-sans text-ink antialiased;
     margin: 0;
     min-height: 100dvh;
     text-rendering: optimizeLegibility;
@@ -70,66 +54,54 @@
   h2,
   h3,
   h4 {
-    @apply font-epic text-mist;
+    @apply font-epic text-ink;
     letter-spacing: 0.01em;
     text-wrap: balance;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-teal);
+    outline: 3px solid var(--color-terracotta);
     outline-offset: 2px;
   }
 
+  :is(.bg-leather, .bg-leather-deep) :focus-visible {
+    outline-color: var(--color-gold);
+  }
+
   ::selection {
-    background: rgb(255 193 77 / 0.4);
+    background: rgb(201 151 42 / 0.35);
   }
 }
 
-/* The battlefield-at-dusk backdrop: warm ember glow against cool teal shadow, drifting fog */
-@utility bg-cinematic {
+/* A fine paper-fibre speckle, for warm parchment sections */
+@utility bg-paper-grain {
+  background-image: radial-gradient(circle, rgb(43 29 20 / 0.08) 0.7px, transparent 0.7px);
+  background-size: 16px 16px;
+}
+
+/* A soft lamp-light glow, for the dark leather header/footer */
+@utility bg-leather-glow {
   background:
-    radial-gradient(50% 40% at 12% 0%, rgb(255 106 43 / 0.24), transparent 60%),
-    radial-gradient(45% 35% at 95% 10%, rgb(47 224 214 / 0.16), transparent 60%),
-    radial-gradient(60% 50% at 50% 100%, rgb(155 92 255 / 0.1), transparent 65%),
-    var(--color-void);
+    radial-gradient(60% 70% at 15% 0%, rgb(201 151 42 / 0.1), transparent 65%),
+    radial-gradient(50% 60% at 100% 100%, rgb(189 68 48 / 0.08), transparent 65%),
+    var(--color-leather);
 }
 
-/* A faint tactical grid, like a HUD readout */
-@utility bg-hud-grid {
-  background-image:
-    linear-gradient(rgb(47 224 214 / 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(47 224 214 / 0.06) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
-/* Iridescent foil fill for display headlines */
+/* Warm ink-to-gold foil for display emphasis */
 @utility text-fire {
-  background-image: linear-gradient(90deg, var(--color-gold), var(--color-ember), var(--color-holo-pink));
+  background-image: linear-gradient(90deg, var(--color-terracotta), var(--color-gold));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Holographic shifting gradient, for the accent ring that nothing else gets */
-@utility bg-holo {
-  background-image: linear-gradient(
-    110deg,
-    var(--color-gold),
-    var(--color-holo-pink),
-    var(--color-holo-violet),
-    var(--color-teal),
-    var(--color-gold)
-  );
-  background-size: 250% 100%;
-}
-
-/* HUD panel silhouette: corners cut like a targeting readout, not a rounded card */
+/* A page corner folded over, like a dog-eared book — used on cards and panels instead of a plain rectangle */
 @utility clip-hud {
-  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
 }
 
 @utility clip-hud-sm {
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

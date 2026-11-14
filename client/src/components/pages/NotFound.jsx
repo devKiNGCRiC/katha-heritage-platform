@@ -10,7 +10,7 @@ export default function NotFound() {
         404
       </p>
       <h1 className="mt-4 font-epic text-3xl font-bold">This legend hasn&rsquo;t been written yet</h1>
-      <p className="mt-3 max-w-md text-mist/70">
+      <p className="mt-3 max-w-md text-ink-soft">
         The story you were looking for isn&rsquo;t here &mdash; it may have moved, or it may never have been written.
       </p>
       <Button as={Link} to="/" size="large" className="mt-8">

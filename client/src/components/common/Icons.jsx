@@ -64,51 +64,6 @@ export const InstagramIcon = (props) => (
   </Svg>
 );
 
-const RAY_ANGLES = Array.from({ length: 16 }, (_, i) => i * 22.5);
-
-/**
- * A solid sunburst: rays radiating from a core disc, the way painted
- * deities carry a halo of light. A comic-cover burst and a divine
- * radiance motif at once — flat-filled, not line art.
- */
-export function Sunburst({ className = '' }) {
-  return (
-    <svg viewBox="0 0 400 400" fill="currentColor" className={className} aria-hidden="true" focusable="false">
-      {RAY_ANGLES.map((angle) => (
-        <polygon key={angle} points="191,130 209,130 200,16" transform={`rotate(${angle} 200 200)`} />
-      ))}
-      <circle cx="200" cy="200" r="92" />
-    </svg>
-  );
-}
-
-const SPEED_ANGLES = Array.from({ length: 28 }, (_, i) => -70 + i * 5);
-
-/**
- * Anime-style impact lines: a cone of straight rays bursting from one
- * point, the way motion and sudden arrival are drawn in manga panels —
- * directional energy, not a static radial halo.
- */
-export function SpeedLines({ className = '' }) {
-  return (
-    <svg viewBox="0 0 400 400" fill="none" stroke="currentColor" className={className} aria-hidden="true" focusable="false">
-      {SPEED_ANGLES.map((angle, i) => (
-        <line
-          key={angle}
-          x1="200"
-          y1="200"
-          x2="200"
-          y2={i % 3 === 0 ? '6' : i % 3 === 1 ? '34' : '60'}
-          strokeWidth={i % 3 === 0 ? 2.5 : 1.4}
-          strokeLinecap="round"
-          opacity={i % 3 === 0 ? 0.8 : 0.4}
-          transform={`rotate(${angle} 200 200)`}
-        />
-      ))}
-    </svg>
-  );
-}
-
 const SPOKE_ANGLES = Array.from({ length: 24 }, (_, i) => i * 15);
 
 /** The Ashoka Chakra: a 24-spoke dharma wheel, drawn in outline. */

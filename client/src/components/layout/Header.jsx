@@ -6,7 +6,7 @@ import Button from '../common/Button';
 import { CloseIcon, MenuIcon } from '../common/Icons';
 import Logo from '../common/Logo';
 
-const NAV_BASE = 'px-3 py-1.5 text-sm font-bold uppercase tracking-wide transition-colors hover:text-gold';
+const NAV_BASE = 'rounded-md px-3 py-1.5 text-sm font-semibold transition-colors hover:text-gold';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -35,14 +35,14 @@ export default function Header() {
         to="/"
         end
         onClick={closeMenu}
-        className={({ isActive }) => `${NAV_BASE} ${isActive ? 'text-gold' : 'text-mist/80'}`}
+        className={({ isActive }) => `${NAV_BASE} ${isActive ? 'text-gold' : 'text-paper/85'}`}
       >
         Home
       </NavLink>
-      <Link to={{ pathname: '/', hash: '#features' }} onClick={closeMenu} className={`${NAV_BASE} text-mist/80`}>
+      <Link to={{ pathname: '/', hash: '#features' }} onClick={closeMenu} className={`${NAV_BASE} text-paper/85`}>
         Chapters
       </Link>
-      <Link to={{ pathname: '/', hash: '#categories' }} onClick={closeMenu} className={`${NAV_BASE} text-mist/80`}>
+      <Link to={{ pathname: '/', hash: '#categories' }} onClick={closeMenu} className={`${NAV_BASE} text-paper/85`}>
         Themes
       </Link>
     </>
@@ -50,16 +50,16 @@ export default function Header() {
 
   const authActions = user ? (
     <>
-      <span className="max-w-[9rem] truncate text-sm font-semibold text-mist" title={user.name}>
+      <span className="max-w-[9rem] truncate text-sm font-semibold text-paper" title={user.name}>
         {user.name}
       </span>
-      <Button variant="outline" size="small" onClick={handleLogout}>
+      <Button variant="light" size="small" onClick={handleLogout}>
         Log out
       </Button>
     </>
   ) : (
     <>
-      <Button as={Link} to="/login" variant="ghost" size="small" onClick={closeMenu}>
+      <Button as={Link} to="/login" variant="ghost" size="small" onClick={closeMenu} className="text-paper hover:bg-paper/10">
         Sign in
       </Button>
       <Button as={Link} to="/register" size="small" onClick={closeMenu}>
@@ -69,11 +69,11 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-4 z-40 mx-auto w-full max-w-5xl px-4 sm:px-6">
-      <div className="clip-hud relative flex h-16 items-center justify-between gap-4 border border-teal/30 bg-void/80 px-4 backdrop-blur-md sm:px-6">
+    <header className="sticky top-0 z-40 bg-leather bg-leather-glow">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" aria-label="KATHA home">
-          <Logo className="size-9 drop-shadow-[0_0_10px_rgb(255_193_77_/_0.55)]" />
-          <span className="font-epic text-xl font-bold tracking-wide text-mist">KATHA</span>
+          <Logo className="size-9" />
+          <span className="font-epic text-xl font-bold tracking-wide text-paper">KATHA</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -84,7 +84,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center text-mist hover:bg-white/10 md:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-md text-paper hover:bg-paper/10 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -92,19 +92,18 @@ export default function Header() {
         >
           {open ? <CloseIcon className="size-6" /> : <MenuIcon className="size-6" />}
         </button>
-
-        {open && (
-          <div
-            id="mobile-menu"
-            className="clip-hud absolute inset-x-0 top-[calc(100%+0.5rem)] border border-teal/30 bg-void/90 p-4 backdrop-blur-md md:hidden"
-          >
-            <nav aria-label="Mobile" className="flex flex-col gap-1">
-              {links}
-            </nav>
-            <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-teal/20 pt-3">{authActions}</div>
-          </div>
-        )}
       </div>
+
+      {open && (
+        <div id="mobile-menu" className="border-t border-paper/15 bg-leather-deep md:hidden">
+          <nav aria-label="Mobile" className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
+            {links}
+          </nav>
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 border-t border-paper/15 px-4 py-4 sm:px-6">
+            {authActions}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
